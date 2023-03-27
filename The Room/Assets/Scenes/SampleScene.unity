@@ -27537,7 +27537,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pointsParent: {fileID: 1956517154}
   player: {fileID: 1917837488}
-  pointDistance: 1.5
+  pointDistance: 2.4
   onAllPointsCollected:
     m_PersistentCalls:
       m_Calls: []

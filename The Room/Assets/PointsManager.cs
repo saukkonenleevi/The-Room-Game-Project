@@ -1,3 +1,4 @@
+using DG.Tweening;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -22,10 +23,16 @@ public class PointsManager : MonoBehaviour
             if (Vector3.Distance(point.position, player.position) <= pointDistance)
             {
                 point.parent = null;
-                Destroy(point.gameObject, .2f);
-                Debug.Log("Collected one point");
+
+                point.transform.DORotate(Vector3.up * 3000f, .6f, RotateMode.WorldAxisAdd);
+                point.transform.DOScale(0f, .5f);
+                point.transform.DOMoveY(point.transform.position.y + .5f, .5f);
+
+                Destroy(point.gameObject, .5f);
                 break;
             }
+            else
+                point.transform.localPosition += Vector3.up * Mathf.Sin(Time.time);
         }
     }
 

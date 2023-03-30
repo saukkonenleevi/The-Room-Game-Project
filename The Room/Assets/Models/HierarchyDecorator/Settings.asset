@@ -502,7 +502,13 @@ MonoBehaviour:
       shown: 0
     - name: WindZone
       shown: 0
+    - name: ExitManager
+      shown: 0
+    - name: PointsManager
+      shown: 0
     - name: CameraController
+      shown: 0
+    - name: Enemy
       shown: 0
     - name: ObjectGrabbable
       shown: 0
@@ -543,6 +549,12 @@ MonoBehaviour:
     - name: UniversalAdditionalCameraData
       shown: 0
     - name: UniversalAdditionalLightData
+      shown: 0
+    - name: ExampleScript
+      shown: 0
+    - name: ExampleScript2
+      shown: 0
+    - name: ExampleScriptWithIcon
       shown: 0
     - name: PlaymodeTestsController
       shown: 0
@@ -990,11 +1002,7 @@ MonoBehaviour:
       shown: 0
     - name: StateMachine
       shown: 0
-    - name: ExampleScript
-      shown: 0
-    - name: ExampleScript2
-      shown: 0
-    - name: ExampleScriptWithIcon
+    - name: DOTweenComponent
       shown: 0
     customComponents: []
     unityVersion: 2021.3.20f1

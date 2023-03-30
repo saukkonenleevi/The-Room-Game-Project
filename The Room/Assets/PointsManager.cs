@@ -1,13 +1,27 @@
+using System;
+using System.Collections.Generic;
 using DG.Tweening;
 using UnityEngine;
 using UnityEngine.Events;
 
 public class PointsManager : MonoBehaviour
 {
+    public UnityEvent onAllPointsCollected;
+    [Header("References")]
     [SerializeField] private Transform pointsParent;
     [SerializeField] private Transform player;
     [SerializeField] private float pointDistance = 1.5f;
-    public UnityEvent onAllPointsCollected;
+    [Header("Bobbing")] 
+    [SerializeField, Range(.5f, 20f)] private float bobbingFrequency = 5f;
+    [SerializeField, Range(0f, 1f)] private float bobbingAmplitude = .2f;
+    
+    private Dictionary<Transform, Vector3> pointPositions = new();
+
+    private void Start()
+    {
+        foreach (Transform point in pointsParent)
+            pointPositions.Add(point, point.position);
+    }
 
     private void Update()
     {
@@ -32,7 +46,7 @@ public class PointsManager : MonoBehaviour
                 break;
             }
             else
-                point.transform.localPosition += Vector3.up * Mathf.Sin(Time.time);
+                point.transform.position = pointPositions[point] + Vector3.up * (Mathf.Sin(Time.time * bobbingFrequency) * bobbingAmplitude);
         }
     }
 

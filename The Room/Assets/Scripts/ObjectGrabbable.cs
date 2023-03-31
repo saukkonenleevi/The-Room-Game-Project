@@ -4,23 +4,24 @@ using UnityEngine;
 
 public class ObjectGrabbable : MonoBehaviour
 {
-    private Rigidbody objectRigidbody;
+    private Rigidbody rb;
     private Transform objectGrabPointTransform;
 
     private void Awake()
     {
-        objectRigidbody = GetComponent<Rigidbody>();
+        rb = GetComponent<Rigidbody>();
+        rb.angularDrag = 5f;
     }
     public void Grab(Transform objectGrabPointTransform)
     {
         this.objectGrabPointTransform = objectGrabPointTransform;
-        objectRigidbody.useGravity = false;
+        rb.useGravity = false;
     }
 
     public void Drop()
     {
         this.objectGrabPointTransform = null;
-        objectRigidbody.useGravity = true;
+        rb.useGravity = true;
     }
 
     private void FixedUpdate()
@@ -29,7 +30,7 @@ public class ObjectGrabbable : MonoBehaviour
         {
             float lerpSpeed = 10f;
             Vector3 newPosition = Vector3.Lerp(transform.position, objectGrabPointTransform.position, Time.deltaTime * lerpSpeed);
-            objectRigidbody.MovePosition(newPosition);
+            rb.MovePosition(newPosition);
         }
     }
 }

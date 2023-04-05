@@ -24,6 +24,11 @@ public class ObjectGrabbable : MonoBehaviour
         rb.useGravity = true;
     }
 
+    public void Interact()
+    {
+        Debug.Log("Interact!");
+    }
+
     private void FixedUpdate()
     {
         if (objectGrabPointTransform != null)

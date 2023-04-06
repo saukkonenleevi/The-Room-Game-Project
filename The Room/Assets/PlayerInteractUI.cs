@@ -1,29 +1,39 @@
-using System.Collections;
-using System.Collections.Generic;
+using DG.Tweening;
+using TMPro;
 using UnityEngine;
 
 public class PlayerInteractUI : MonoBehaviour
 {
-    [SerializeField] private GameObject containerGameObject;
-    [SerializeField] private PlayerInteract playerInteract;
+    private const float FADE_DUR = .3f;
+    
+    private PlayerInteractionManager player;
+    private CanvasGroup canvasGroup;
+    private TMP_Text text;
+
+    private void Awake()
+    {
+        player = FindObjectOfType<PlayerInteractionManager>();
+        canvasGroup = GetComponentInParent<CanvasGroup>();
+        text = GetComponentInChildren<TMP_Text>();
+    }
 
     private void Update()
     {
-        if (playerInteract.GetGrabbableObject() != null)
-        {
+        text.text = $"Press \"E\" to {player.GetInteractionLabel()}";
+        if (player.ShouldDisplayInteractToggle())
             Show();
-        }
         else
-        {
             Hide();
-        }
     }
     private void Show()
     {
-        containerGameObject.SetActive(true);
+        canvasGroup.DOFade(1f, FADE_DUR);
+        transform.DOScale(Vector3.one, FADE_DUR);
     }
+
     private void Hide()
     {
-        containerGameObject.SetActive(false);
+        canvasGroup.DOFade(0f, FADE_DUR);
+        transform.DOScale(Vector3.zero, FADE_DUR);
     }
 }

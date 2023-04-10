@@ -3,12 +3,15 @@ using UnityEngine;
 public class GrabbableObject : MonoBehaviour, IInteractableObject
 {
     private const float LERP_SPEED = 10f;
+    private const float THROW_FORCE = 200f;
     
     private Rigidbody rb;
     private Transform objectGrabPointTransform;
+    private Transform cam;
 
     private void Awake()
     {
+        cam = Camera.main.transform;
         rb = GetComponent<Rigidbody>();
         rb.angularDrag = 5f;
     }
@@ -28,11 +31,13 @@ public class GrabbableObject : MonoBehaviour, IInteractableObject
     }
     void IInteractableObject.UnInteract()
     {
-        objectGrabPointTransform = null;
+        rb.AddForce(cam.forward * (THROW_FORCE * rb.mass));
         rb.useGravity = true;
+
+        objectGrabPointTransform = null;
     }
 
     bool IInteractableObject.IsToggleable() => true;
     string IInteractableObject.GetInteractionLabel() => "Grab";
-    string IInteractableObject.GetUnInteractionLabel() => "Drop";
+    string IInteractableObject.GetUnInteractionLabel() => "Throw";
 }

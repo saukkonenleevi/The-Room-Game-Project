@@ -16,6 +16,12 @@ public class PointsManager : MonoBehaviour
     [SerializeField, Range(0f, 1f)] private float bobbingAmplitude = .2f;
     
     private Dictionary<Transform, Vector3> pointPositions = new();
+    private GameOverManager gameOverManager;
+
+    private void Awake()
+    {
+        gameOverManager = FindObjectOfType<GameOverManager>();
+    }
 
     private void Start()
     {
@@ -43,6 +49,10 @@ public class PointsManager : MonoBehaviour
                 point.transform.DOMoveY(point.transform.position.y + .5f, .5f);
 
                 Destroy(point.gameObject, .5f);
+
+                if (pointsParent.childCount == 0)
+                    gameOverManager.Activate();
+                
                 break;
             }
             else

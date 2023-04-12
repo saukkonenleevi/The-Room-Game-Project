@@ -5,6 +5,8 @@ public class GrabbableObject : MonoBehaviour, IInteractableObject
     private const float LERP_SPEED = 10f;
     private const float THROW_FORCE = 200f;
     
+    [SerializeField, Range(1f, 5f)] private float throwForceMultiplier = 1f;
+
     private Rigidbody rb;
     private Transform objectGrabPointTransform;
     private Transform cam;
@@ -31,7 +33,8 @@ public class GrabbableObject : MonoBehaviour, IInteractableObject
     }
     void IInteractableObject.UnInteract()
     {
-        rb.AddForce(cam.forward * (THROW_FORCE * rb.mass));
+        // We multiply the mass of the object by the throw force multiplier to make it feel the same for all objects.
+        rb.AddForce(cam.forward * (THROW_FORCE * rb.mass * throwForceMultiplier));
         rb.useGravity = true;
 
         objectGrabPointTransform = null;

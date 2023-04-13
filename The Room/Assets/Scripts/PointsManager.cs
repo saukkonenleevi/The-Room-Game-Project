@@ -55,7 +55,7 @@ public class PointsManager : MonoBehaviour
                 
                 break;
             }
-            else
+            else if (point.name[0] != 'G')
                 point.transform.position = pointPositions[point] + Vector3.up * (Mathf.Sin(Time.time * bobbingFrequency) * bobbingAmplitude);
         }
     }

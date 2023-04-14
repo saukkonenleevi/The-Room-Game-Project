@@ -5,7 +5,7 @@
 
 - **[Ata Türkoğlu](https://github.com/AtaTrkgl):** Programmer, Project Manager
 - **[Johannes Elo](https://github.com/leaverbeaver666):** Narrative Designer, Game Designer
-- **[Julius Soini]():** Audio Designer
+- **[Julius Soini](https://github.com/jwlez):** Audio Designer
 - **[Leevi Saukkonen](https://github.com/saukkonenleevi):** Programmer, Game Designer
 - **[Samuli Salmi](https://github.com/SamuliSalmi1):** Audio Designer, Graphics Designer
 

@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using DG.Tweening;
 using UnityEngine;
@@ -7,6 +6,7 @@ using UnityEngine.Events;
 public class PointsManager : MonoBehaviour
 {
     public UnityEvent onAllPointsCollected;
+    public UnityEvent onPointCollected;
     [Header("References")]
     [SerializeField] private Transform pointsParent;
     [SerializeField] private Transform player;
@@ -16,12 +16,6 @@ public class PointsManager : MonoBehaviour
     [SerializeField, Range(0f, 1f)] private float bobbingAmplitude = .2f;
     
     private Dictionary<Transform, Vector3> pointPositions = new();
-    private GameOverManager gameOverManager;
-
-    private void Awake()
-    {
-        gameOverManager = FindObjectOfType<GameOverManager>();
-    }
 
     private void Start()
     {
@@ -48,14 +42,12 @@ public class PointsManager : MonoBehaviour
                 point.transform.DOScale(0f, .5f);
                 point.transform.DOMoveY(point.transform.position.y + .5f, .5f);
 
+                onPointCollected?.Invoke();
                 Destroy(point.gameObject, .5f);
-
-                if (pointsParent.childCount == 0)
-                    gameOverManager.Activate();
                 
                 break;
             }
-            else if (point.name[0] != 'G')
+            if (point.name[0] != 'G')
                 point.transform.position = pointPositions[point] + Vector3.up * (Mathf.Sin(Time.time * bobbingFrequency) * bobbingAmplitude);
         }
     }

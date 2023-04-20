@@ -1,19 +1,19 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using DG.Tweening;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using UnityEngine.UI;
 
 public class GameOverManager : MonoBehaviour
 {
     public bool isActive = false;
+    
     private CanvasGroup canvasGroup;
+    private MusicManager musicManager;
     
     private void Awake()
     {
         canvasGroup = GetComponent<CanvasGroup>();
+        musicManager = FindObjectOfType<MusicManager>();
+
         canvasGroup.alpha = 0f;
         canvasGroup.blocksRaycasts = false;
     }
@@ -29,5 +29,7 @@ public class GameOverManager : MonoBehaviour
         isActive = true;
         canvasGroup.blocksRaycasts = true;
         canvasGroup.DOFade(1f, .7f);
+        
+        musicManager.SetCreditsVolume(1f);
     }
 }

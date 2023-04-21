@@ -28,7 +28,9 @@ public class FootStepManager : MonoBehaviour
         {
             if (Time.time - lastStepPlayTime >= footstepDur * (groundVel.magnitude > 4.5f ? .65f : 1f))
             {
-                AudioSource.PlayClipAtPoint(clipToPlay, transform.position);
+                AudioSource.PlayClipAtPoint(
+                    clipToPlay, transform.position, clipToPlay == normalFootStepClip ? 1f : .2f
+                );
                 lastStepPlayTime = Time.time;
             }
         }

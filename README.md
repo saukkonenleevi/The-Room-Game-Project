@@ -20,3 +20,4 @@ _The Room_ is a heavy psychological experience. The main objective is collecting
 - [Playable #1](https://github.com/saukkonenleevi/The-Room-Game-Project/releases/tag/playable-1)
 - [Playable #2](https://github.com/saukkonenleevi/The-Room-Game-Project/releases/tag/playable-2)
 - [Playable #3](https://github.com/saukkonenleevi/The-Room-Game-Project/releases/tag/playable-3)
+- [Playable #4 (**The Final Build**)](https://github.com/saukkonenleevi/The-Room-Game-Project/releases/tag/playable-4)
